@@ -3,7 +3,7 @@ name: Publish release
 on:
   push:
     branches:
-      - release-v0.1.0
+      - hyper-translator-v0.1.0
   workflow_dispatch:
 
 permissions:
@@ -31,4 +31,4 @@ jobs:
         if: success()
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh api --method DELETE "repos/${{ github.repository }}/git/refs/heads/release-v0.1.0"
+        run: gh api --method DELETE "repos/${{ github.repository }}/git/refs/heads/hyper-translator-v0.1.0"
