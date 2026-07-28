@@ -4,15 +4,8 @@
 
 [![Telegram](https://img.shields.io/badge/Telegram-hdewai-26A5E4?logo=telegram&logoColor=white)](https://t.me/+F1DotFYPlfdlMmI9) [![GitHub](https://img.shields.io/badge/GitHub-Release-181717?logo=github&logoColor=white)](https://github.com/hdewai/HyperTranslator/releases) [![版本号](https://img.shields.io/github/v/release/hdewai/HyperTranslator?label=%E7%89%88%E6%9C%AC&logo=github)](https://github.com/hdewai/HyperTranslator/releases/tag/v0.1.0)
 
-## 下载
+## 赞助
 
-请前往 [v0.1.0 Release](https://github.com/hdewai/HyperTranslator/releases/tag/v0.1.0) 下载：
-
-```text
-hyper-translator.exe
-```
-
-本仓库仅提供发行说明。程序源码不公开。
 
 ## 功能
 
