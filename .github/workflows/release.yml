@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out release assets
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Publish v0.1.0
         env:
