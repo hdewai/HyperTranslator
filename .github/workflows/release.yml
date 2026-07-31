@@ -19,13 +19,15 @@ jobs:
       - name: Publish v0.1.0
         env:
           GH_TOKEN: ${{ github.token }}
+          RELEASE_BINARY: hyper-translator.exe
         run: |
+          test -f "$RELEASE_BINARY"
           gh release view v0.1.0 >/dev/null 2>&1 || \
             gh release create v0.1.0 --title "HyperTranslator v0.1.0" --notes-file CHANGELOG.md
           gh release edit v0.1.0 --title "HyperTranslator v0.1.0" --notes-file CHANGELOG.md
           gh release delete-asset v0.1.0 README.md --yes 2>/dev/null || true
           gh release delete-asset v0.1.0 CHANGELOG.md --yes 2>/dev/null || true
-          gh release upload v0.1.0 hyper-translator.exe --clobber
+          gh release upload v0.1.0 "$RELEASE_BINARY" --clobber
 
       - name: Remove temporary release branch
         if: success()

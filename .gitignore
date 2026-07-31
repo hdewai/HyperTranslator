@@ -1,0 +1,11 @@
+# This repository tracks release-facing metadata only.
+*
+
+!/.gitignore
+!/.gitmessage
+!/README.md
+!/CHANGELOG.md
+
+!/.github/
+!/.github/workflows/
+!/.github/workflows/release.yml

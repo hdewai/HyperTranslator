@@ -1,0 +1,15 @@
+# Angular commit format:
+# <type>(<scope>): <subject>
+#
+# Common types:
+# feat:     user-facing feature
+# fix:      bug fix
+# docs:     documentation-only change
+# ci:       workflow/release automation change
+# chore:    repository maintenance
+# release:  release asset update
+#
+# Examples:
+# docs: update README usage notes
+# ci(release): publish release binary
+# release: update hyper-translator binary
