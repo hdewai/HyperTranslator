@@ -2,7 +2,7 @@
 
 轻量、快速的 Windows 10/11 划词翻译工具。选中文本并按下全局快捷键，即可通过系统通知查看翻译结果。
 
-[![Telegram](https://img.shields.io/badge/Telegram-hdewai-26A5E4?logo=telegram&logoColor=white)](https://t.me/+F1DotFYPlfdlMmI9) [![GitHub](https://img.shields.io/badge/GitHub-Release-181717?logo=github&logoColor=white)](https://github.com/hdewai/HyperTranslator/releases) [![版本号](https://img.shields.io/github/v/release/hdewai/HyperTranslator?label=%E7%89%88%E6%9C%AC&logo=github)](https://github.com/hdewai/HyperTranslator/releases/tag/v0.1.0)
+[![Telegram](https://img.shields.io/badge/Telegram-hdewai-26A5E4?logo=telegram&logoColor=white)](https://t.me/+F1DotFYPlfdlMmI9) [![GitHub](https://img.shields.io/badge/GitHub-Release-181717?logo=github&logoColor=white)](https://github.com/hdewai/HyperTranslator/releases) [![版本号](https://img.shields.io/github/v/release/hdewai/HyperTranslator?label=%E7%89%88%E6%9C%AC&logo=github)](https://github.com/hdewai/HyperTranslator/releases/tag/v0.1.1)
 
 ## 赞助
 

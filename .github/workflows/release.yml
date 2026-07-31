@@ -3,7 +3,8 @@ name: Publish release
 on:
   push:
     branches:
-      - hyper-translator-v0.1.0
+      - main
+      - 'hyper-translator-v*'
   workflow_dispatch:
 
 permissions:
@@ -16,21 +17,39 @@ jobs:
       - name: Check out release assets
         uses: actions/checkout@v5
 
-      - name: Publish v0.1.0
+      - name: Resolve release version
+        shell: bash
+        run: |
+          version="$(sed -nE 's/^## \[([0-9]+\.[0-9]+\.[0-9]+)\].*/\1/p' CHANGELOG.md | head -n 1)"
+          test -n "$version"
+          echo "RELEASE_TAG=v$version" >> "$GITHUB_ENV"
+          echo "RELEASE_TITLE=HyperTranslator v$version" >> "$GITHUB_ENV"
+          expected_branch="hyper-translator-v$version"
+          if [[ "$GITHUB_REF_NAME" == hyper-translator-v* && "$GITHUB_REF_NAME" != "$expected_branch" ]]; then
+            echo "Release branch $GITHUB_REF_NAME does not match CHANGELOG version $expected_branch" >&2
+            exit 1
+          fi
+
+      - name: Publish release notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view "$RELEASE_TAG" >/dev/null 2>&1 || \
+            gh release create "$RELEASE_TAG" --title "$RELEASE_TITLE" --notes-file CHANGELOG.md
+          gh release edit "$RELEASE_TAG" --title "$RELEASE_TITLE" --notes-file CHANGELOG.md
+
+      - name: Upload release binary
+        if: github.ref_name != 'main'
         env:
           GH_TOKEN: ${{ github.token }}
           RELEASE_BINARY: hyper-translator.exe
         run: |
           test -f "$RELEASE_BINARY"
-          gh release view v0.1.0 >/dev/null 2>&1 || \
-            gh release create v0.1.0 --title "HyperTranslator v0.1.0" --notes-file CHANGELOG.md
-          gh release edit v0.1.0 --title "HyperTranslator v0.1.0" --notes-file CHANGELOG.md
-          gh release delete-asset v0.1.0 README.md --yes 2>/dev/null || true
-          gh release delete-asset v0.1.0 CHANGELOG.md --yes 2>/dev/null || true
-          gh release upload v0.1.0 "$RELEASE_BINARY" --clobber
+          gh release delete-asset "$RELEASE_TAG" "$RELEASE_BINARY" --yes 2>/dev/null || true
+          gh release upload "$RELEASE_TAG" "$RELEASE_BINARY" --clobber
 
       - name: Remove temporary release branch
-        if: success()
+        if: success() && github.ref_name != 'main'
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh api --method DELETE "repos/${{ github.repository }}/git/refs/heads/hyper-translator-v0.1.0"
+        run: gh api --method DELETE "repos/${{ github.repository }}/git/refs/heads/${{ github.ref_name }}"
