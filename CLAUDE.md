@@ -10,6 +10,7 @@
   - `CLAUDE.md`
   - `CHANGELOG.md`
   - `README.md`
+  - `LICENSE`
 - Do not commit `target/`, `target/release/hyper-translator.exe`, root `hyper-translator.exe`, `Cargo.toml`, `Cargo.lock`, `src/`, `assets/`, or `build.rs` to `main`.
 - Release binaries are distributed through GitHub Releases only, not through the repository Code view.
 - Use Angular/Conventional Commit style for commits, e.g. `ci(release): scope notes to current version`, `docs: update README usage`, `chore(repo): track release metadata`.

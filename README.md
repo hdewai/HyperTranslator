@@ -8,7 +8,7 @@
 
 ## 仓库内容
 
-本仓库只跟踪发行相关元数据：`README.md`、`CHANGELOG.md`、`.gitmessage` 和发布 workflow。发布版二进制程序通过 GitHub Release 分发，不提交到仓库 Code 区。
+本仓库只跟踪发行相关元数据与开源许可证：`README.md`、`CHANGELOG.md`、`LICENSE`、`.gitmessage` 和发布 workflow。发布版二进制程序通过 GitHub Release 分发，不提交到仓库 Code 区。
 
 ## 功能
 
