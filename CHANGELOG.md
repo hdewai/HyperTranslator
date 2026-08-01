@@ -2,6 +2,13 @@
 
 本项目的发行记录遵循 [Semantic Versioning](https://semver.org/)。
 
+## [0.1.2] - 2026-08-01
+
+### Fixed
+
+- 修复浏览器网页中选中文本后按 `Win + Shift + Z` 偶发读取不到选中文本的问题。
+- 改用更稳定的键盘输入注入流程，并放宽剪贴板等待窗口，提升浏览器复制检测成功率。
+
 ## [0.1.1] - 2026-07-31
 
 ### Changed
@@ -22,5 +29,6 @@
 - 新增后台翻译任务，保持托盘交互流畅。
 - 新增独立的应用、托盘和通知图标资源。
 
+[0.1.2]: https://github.com/hdewai/HyperTranslator/releases/tag/v0.1.2
 [0.1.1]: https://github.com/hdewai/HyperTranslator/releases/tag/v0.1.1
 [0.1.0]: https://github.com/hdewai/HyperTranslator/releases/tag/v0.1.0
