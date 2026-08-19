@@ -11,7 +11,8 @@
   - `CHANGELOG.md`
   - `README.md`
   - `LICENSE`
-- Do not commit `target/`, `target/release/hyper-translator.exe`, root `hyper-translator.exe`, `Cargo.toml`, `Cargo.lock`, `src/`, `assets/`, or `build.rs` to `main`.
+- Do not commit `dist/`, `target/`, root release binaries, `Cargo.toml`, `Cargo.lock`, `src/`, `assets/`, or `build.rs` to `main`.
+- Build complete client outputs under `dist/debug/` or `dist/release/`; do not split them into frontend/backend directories.
 - Release binaries are distributed through GitHub Releases only, not through the repository Code view.
 - Use Angular/Conventional Commit style for commits, e.g. `ci(release): scope notes to current version`, `docs: update README usage`, `chore(repo): track release metadata`.
 - Current repository-local Git author must remain:
@@ -40,21 +41,22 @@
 Use a temporary release branch only when uploading the executable asset:
 
 1. Keep `main` clean and synchronized with `origin/main`.
-2. Ensure the release binary exists locally, usually at `target/release/hyper-translator.exe`.
-3. Create a temporary branch named exactly for the current version:
+2. Ensure the release binary exists locally at `dist/release/hyper-translator.exe`.
+3. Ensure any installer deliverables remain under `dist/release/bundle/`.
+4. Create a temporary branch named exactly for the current version:
    - `hyper-translator-vX.Y.Z`
    - Example: `hyper-translator-v0.1.1`
-4. Copy the binary to the temporary branch root as `hyper-translator.exe`.
-5. Force-add and commit only on the temporary branch:
-   - `git add -f hyper-translator.exe`
+5. Copy the binary to `dist/release/hyper-translator.exe` on the temporary branch.
+6. Force-add and commit only that release asset on the temporary branch:
+   - `git add -f dist/release/hyper-translator.exe`
    - `git commit -m "release: publish vX.Y.Z binary"`
-6. Push the temporary branch:
+7. Push the temporary branch:
    - `git push origin HEAD:refs/heads/hyper-translator-vX.Y.Z`
-7. The workflow validates that the temporary branch name matches the top `CHANGELOG.md` version.
-8. The workflow uploads root `hyper-translator.exe` to the matching GitHub Release.
-9. The workflow deletes the temporary remote branch after success.
-10. Switch back to `main` and delete the local temporary branch.
-11. Confirm `main` still does not track `hyper-translator.exe` or anything under `target/`.
+8. The workflow validates that the temporary branch name matches the top `CHANGELOG.md` version.
+9. The workflow reads `dist/release/hyper-translator.exe` and uploads it as `hyper-translator.exe` to the matching GitHub Release.
+10. The workflow deletes the temporary remote branch after success.
+11. Switch back to `main` and delete the local temporary branch.
+12. Confirm `main` still does not track `hyper-translator.exe`, `dist/`, or any Cargo target directory.
 
 ## Workflow behavior
 
@@ -69,7 +71,7 @@ Use a temporary release branch only when uploading the executable asset:
   - Validate the branch name matches the top `CHANGELOG.md` version.
   - Build current-version-only `release-notes.md`.
   - Create or edit the matching GitHub Release.
-  - Upload root `hyper-translator.exe` as the release asset.
+  - Read `dist/release/hyper-translator.exe` and upload it as the `hyper-translator.exe` release asset.
   - Delete the temporary release branch.
 
 ## Verification checklist

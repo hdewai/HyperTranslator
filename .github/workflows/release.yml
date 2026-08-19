@@ -55,11 +55,12 @@ jobs:
         if: github.ref_name != 'main'
         env:
           GH_TOKEN: ${{ github.token }}
-          RELEASE_BINARY: hyper-translator.exe
+          RELEASE_BINARY: dist/release/hyper-translator.exe
+          RELEASE_ASSET: hyper-translator.exe
         run: |
           test -f "$RELEASE_BINARY"
-          gh release delete-asset "$RELEASE_TAG" "$RELEASE_BINARY" --yes 2>/dev/null || true
-          gh release upload "$RELEASE_TAG" "$RELEASE_BINARY" --clobber
+          gh release delete-asset "$RELEASE_TAG" "$RELEASE_ASSET" --yes 2>/dev/null || true
+          gh release upload "$RELEASE_TAG" "$RELEASE_BINARY" --clobber --name "$RELEASE_ASSET"
 
       - name: Remove temporary release branch
         if: success() && github.ref_name != 'main'
