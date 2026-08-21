@@ -17,6 +17,7 @@
 - 源语言支持 `AUTO`、`ZH`、`EN`，默认自动识别
 - 目标语言支持 `ZH`（中文）和 `EN`（英文），默认英文
 - 搜狗与 Bing 按轮询顺序调用；当前接口失败时自动尝试下一个，全部失败后才显示错误
+- 搜狗接口使用当前网页翻译 API，Bing 作为可用性备用接口
 - 通过 Tauri + shadcn/ui Sonner 显示弹性翻译通知
 - 通知最多堆叠三条，按 FIFO 从底部入队、顶部先出
 - 长结果自动换行并增高，通知最多显示 5 秒
@@ -24,6 +25,26 @@
 - 托盘菜单只包含设置与退出
 - 捕获选区后恢复原剪贴板文本
 - 单文件可执行程序，无需安装
+
+## 构建
+
+完整客户端构建直接使用 `src-tauri/` 下的 Cargo 项目：
+
+```powershell
+npm run build:debug
+npm run build:release
+```
+
+这两个脚本先生成对应模式的前端资源，再进入 `src-tauri/` 执行 `cargo build`。不再使用根目录 Cargo 项目，也不再依赖 `scripts/build-tauri.mjs`。
+
+只编译 Rust/Tauri 项目时，可以直接执行：
+
+```powershell
+cargo build --manifest-path .\src-tauri\Cargo.toml
+cargo build --release --manifest-path .\src-tauri\Cargo.toml
+```
+
+最终客户端产物位于 `dist/debug/` 和 `dist/release/`。Tailwind 只扫描 `ui/` 下的 TS/TSX 源码，不会遍历 `dist/` 内的 Cargo 构建缓存。
 
 ## 使用方法
 

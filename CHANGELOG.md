@@ -15,8 +15,9 @@
 
 - 使用 Tauri Toast 替代 Windows 系统通知，并修正弹窗宽高、右侧边框裁切、圆角和动态高度。
 - 搜狗与 Bing 翻译接口改为轮询调用；当前接口失败后自动尝试下一个，全部接口失败后才显示错误。
-- 构建产物统一放在 `dist/debug/` 与 `dist/release/`，移除旧 Win32/GDI 客户端构建入口。
-- Release 构建改用隔离 staging 目录，并在目标程序运行时提前报告文件锁定错误。
+- 按当前网页协议适配搜狗 `/api/transpc/text/result` 接口，刷新会话参数解析与浏览器请求头。
+- 构建产物统一放在 `dist/debug/` 与 `dist/release/`，移除旧 Win32/GDI 客户端构建入口；npm 构建脚本直接进入 `src-tauri/` 调用 Cargo。
+- Release 构建直接调用 `src-tauri/Cargo.toml`，并限制 Tailwind 只扫描 `ui/` 源码，避免扫描 `dist/` Cargo 产物导致前端构建耗时数分钟。
 - 托盘菜单精简为“设置”和“退出”；通知时长可选择 1–5 秒，默认 5 秒。
 
 ### Fixed

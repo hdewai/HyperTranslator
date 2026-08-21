@@ -13,6 +13,7 @@
   - `LICENSE`
 - Do not commit `dist/`, `target/`, root release binaries, `Cargo.toml`, `Cargo.lock`, `src/`, `assets/`, or `build.rs` to `main`.
 - Build complete client outputs under `dist/debug/` or `dist/release/`; do not split them into frontend/backend directories.
+- Build commands use `package.json` scripts that compile the frontend and then invoke Cargo from `src-tauri/`; do not restore or use `scripts/build-tauri.mjs`.
 - Release binaries are distributed through GitHub Releases only, not through the repository Code view.
 - Use Angular/Conventional Commit style for commits, e.g. `ci(release): scope notes to current version`, `docs: update README usage`, `chore(repo): track release metadata`.
 - Current repository-local Git author must remain:

@@ -3,6 +3,7 @@
 
 !/.gitignore
 !/.gitmessage
+!/.env
 !/CLAUDE.md
 !/README.md
 !/CHANGELOG.md
@@ -11,3 +12,11 @@
 !/.github/
 !/.github/workflows/
 !/.github/workflows/release.yml
+
+# Local build outputs and release deliverables stay outside version control.
+/src-tauri/target/
+/src-tauri/.cargo/
+/.cargo/
+/dist/
+/HyperTranslator_*.exe
+/HyperTranslator_*.msi
